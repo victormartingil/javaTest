@@ -1,9 +1,9 @@
-Linea 1
-Linea 2
-Línea 3
-Texto añadido1
-Texto añadido
-Texto añadido linea 1
-Texto añadido línea 2
-Texto añadido linea 1
-Texto añadido línea 2
+Linea;1
+Linea;2
+Línea;3
+Texto;añadido1
+Texto;añadido
+Texto;añadido;linea;1
+Texto;añadido;línea;2
+Texto;añadido;linea;1
+Texto;añadido;línea;2
