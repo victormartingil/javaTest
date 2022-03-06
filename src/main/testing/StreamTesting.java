@@ -3,10 +3,7 @@ package main.testing;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalDouble;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -14,7 +11,7 @@ import java.util.stream.Stream;
 public class StreamTesting {
 
     public void printForEach() throws IOException {
-        example11();
+        example14();
 
     }
 
@@ -104,11 +101,11 @@ public class StreamTesting {
     }
 
     private void example10() throws IOException {
-        // Stream rows from CSV file and count
+        // Stream rows from CSV file, filter depending on content and count rows
         Stream<String> rows1 = Files.lines(Paths.get("documents/hola.txt"));
         int rowCount = (int) rows1
                 .map(x -> x.split(";"))
-                .filter(x -> x.length >3)
+                .filter(x -> x.length > 3)
                 .count();
         System.out.println(rowCount + " rows.");
         rows1.close();
@@ -125,6 +122,39 @@ public class StreamTesting {
         rows2.close();
     }
 
+    private void example12() throws IOException {
+        // Stream rows from CSV, convert into map (get key and value)
+        Stream<String> rows3 = Files.lines(Paths.get("documents/hola.txt"));
+        Map<String, String> map = new HashMap<>();
+        map = rows3
+                .map(x -> x.split(";"))
+                .filter(x -> x.length > 3)
+                .filter(x -> Integer.parseInt(x[3]) > 1)
+                .collect(Collectors.toMap(
+                        x -> x[0],
+                        x -> x[1]));
+        rows3.close();
+        for (String key : map.keySet()) {
+            System.out.println(key + " -> " + map.get(key));
+        }
+    }
+
+    private void example13() throws IOException {
+        // Sum amount through Stream.reduce()
+        // 0.0 Starting value, Double a the total acumulated, Double b the new element in Stream.
+        double total = Stream.of(1.2, 3.4, 5.6)
+                .reduce(0.0, (Double a, Double b) -> a + b);
+        System.out.println("Total = " + total);
+    }
+
+    private void example14() throws IOException {
+        //
+        IntSummaryStatistics summary = IntStream.of(7, 2, 19)
+                .summaryStatistics();
+        System.out.println(summary);
+        int min = summary.getMin();
+        System.out.println("Min -> " + min);
+    }
 
 
 }

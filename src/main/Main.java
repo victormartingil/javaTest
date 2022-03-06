@@ -8,8 +8,9 @@ public class Main {
 
     public static void main(String args[]) throws IOException {
 
+//        ogoneTest();
+
         stream();
-        
 //        textContains();
 //        substringThis();
 //        doubleToString();
@@ -19,6 +20,11 @@ public class Main {
 //        writeFile();
 //        generateTreeDir();
 
+    }
+
+    private static void ogoneTest() {
+        OgoneTest ot = new OgoneTest();
+        ot.main();
     }
 
     private static void stream() throws IOException {
